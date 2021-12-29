@@ -65,6 +65,8 @@ while r < 7:
     
     #for t in range(6):
     t = 2
+    #while even_redY < 3:
+    #[a, a + 1, a + 2, a + 3]
     print(get_index_positions(odd_blue, t) )
     print(get_index_positions(odd_blueY, t) )
     print(get_index_positions(even_red, t))
