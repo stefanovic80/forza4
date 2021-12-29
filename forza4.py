@@ -48,25 +48,21 @@ coordX = []
 coordY = []
 colors = ['red', 'blue']
 dots = []
-j, k = 0, 0
-y = [1, 1, 1, 1, 1, 1]
-while r < 10:    
-    #coordinate = np.round(plt.ginput(n = 1)[0])
-    coord = plt.ginput(n = 1)[0]
-    coord = [int(k) for k in coord] 
-    coordX = coordX + [coord[0]]
-    coordY = coordY + [coord[1]]        
-    #plt.show()
-    dots, = ax.plot(coordX[r], coordY[r],\
-                           'o', markersize=22, color = colors[r%2])
-    plt.pause(0.5)
-    dots.remove()
+j = 0
+y = [1 for k in range(6)] #[1, 1, 1, 1, 1, 1]
 
-    if coordX[-1] in coordX[:-1]:
-        #j = int(coordX[-1])
-        j = coordX[-1]
-        y[j] = y[j] + 1
+while r < 8:   
+    coord = plt.ginput(n = 1)[0][0] #it takes x axis (second [0]) on forza4
+    coord = np.round(coord)# it rounds to the closest integer
+    coordX = coordX + [int(coord)]
     
+    j = coordX[-1]
+    if coordX[-1] in coordX[:-1]:     
+        y[j] = y[j] + 1
+     
+    coordY = coordY + [y[j]]
     dots, = ax.plot(coordX[r], y[j],\
                            'o', markersize=22, color = colors[r%2])
+    
     r = r + 1
+    print(y)
