@@ -3,6 +3,8 @@ import numpy as np
 import matplotlib.mlab as mlab
 import matplotlib 
 import numpy as np
+import pandas as pd
+
 
 plt.close()
 plt.ion()
@@ -64,17 +66,17 @@ while breakOuterLoop == 0:
                 
                 k2 = np.array(coordsX[winner]) - np.array(coordsY[winner])
                 k2 = k2.tolist()
-                print(k2)
-                k2 = [b for a, b in zip(k2, k2) if a == t]
-                print(k2)
+                k2 = pd.Series(k2).value_counts().max()
+                
                 try:
                     g0 = min(k0)
                     g1 = min(k1)
-                    if ((len(k0)> 3) and (k0 == [g0, g0 + 1, g0 +2, g0 + 3])) or\
-                    ((len(k1)> 3) and (k1 == [g1, g1 + 1, g1 +2, g1 + 3])) or\
-                    (  len(k2) > 3 ):
+                    if ( (len(k0)> 3) and (k0 == [g0, g0 + 1, g0 +2, g0 + 3]) ) or\
+                    ( (len(k1)> 3) and (k1 == [g1, g1 + 1, g1 +2, g1 + 3]) ) or\
+                    ( k2 > 3 ):
                         print("The winner is " + colors[winner])
                         breakOuterLoop = 1
+                        print(k0, k1, k2)
                         break
                 
                 except:
