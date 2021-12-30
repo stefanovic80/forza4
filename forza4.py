@@ -1,7 +1,5 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import matplotlib.mlab as mlab
-import matplotlib 
 import numpy as np
 import pandas as pd
 
@@ -54,19 +52,19 @@ while breakOuterLoop == 0:
     
     for winner in range(2):
         try:
-            t = 0 #
+            t = 0 # t is the number of the row/column in which blue or red could win
             loop_end = max(coordsY[winner]) + 1
             while t < loop_end:
                 #k = np.array(even_red)[indRedY].tolist() # select only
                 k0 = [b for a, b in zip(coordsY[winner], coordsX[winner]) if a == t]
-                k0.sort()
+                k0.sort()#horizontal win!
                 
                 k1 = [b for a, b in zip(coordsX[winner], coordsY[winner]) if a == t]
-                k1.sort()
+                k1.sort()#vertical win!
                 
                 k2 = np.array(coordsX[winner]) - np.array(coordsY[winner])
                 k2 = k2.tolist()
-                k2 = pd.Series(k2).value_counts().max()
+                k2 = pd.Series(k2).value_counts().max() #oblique win!
                 
                 try:
                     g0 = min(k0)
