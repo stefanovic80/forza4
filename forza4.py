@@ -55,12 +55,24 @@ while breakOuterLoop == 0:
             t = 0 #
             loop_end = max(coordsY[winner]) + 1
             while t < loop_end:
-                k = [b for a, b in zip(coordsY[winner], coordsX[winner]) if a == t]
                 #k = np.array(even_red)[indRedY].tolist() # select only
-                k.sort()
+                k0 = [b for a, b in zip(coordsY[winner], coordsX[winner]) if a == t]
+                k0.sort()
+                
+                k1 = [b for a, b in zip(coordsX[winner], coordsY[winner]) if a == t]
+                k1.sort()
+                
+                k2 = np.array(coordsX[winner]) - np.array(coordsY[winner])
+                k2 = k2.tolist()
+                print(k2)
+                k2 = [b for a, b in zip(k2, k2) if a == t]
+                print(k2)
                 try:
-                    g = min(k)
-                    if (len(k)> 3) and (k == [g, g + 1, g +2, g + 3]):
+                    g0 = min(k0)
+                    g1 = min(k1)
+                    if ((len(k0)> 3) and (k0 == [g0, g0 + 1, g0 +2, g0 + 3])) or\
+                    ((len(k1)> 3) and (k1 == [g1, g1 + 1, g1 +2, g1 + 3])) or\
+                    (  len(k2) > 3 ):
                         print("The winner is " + colors[winner])
                         breakOuterLoop = 1
                         break
@@ -68,7 +80,7 @@ while breakOuterLoop == 0:
                 except:
                     pass
                 
-                t +=1 # something does not work!
+                t +=1 
         except:
             pass
         
