@@ -38,31 +38,38 @@ while breakOuterLoop == 0:
     plt.ginput(n = 1) #click two times before circle appearing
     r = r + 1
     
+    coordsX = []
+    coordsY = []
+    #[0] is even, which is red. [1] is odd, which is blue
     
-    even_red = [y for x,y in enumerate(coordX) if x%2 == 0]
-    even_redY = [y for x,y in enumerate(coordY) if x%2 == 0]
+    coordsX = coordsX + [ [y for x,y in enumerate(coordX) if x%2 == 0] ]
+    coordsY = coordsY + [ [y for x,y in enumerate(coordY) if x%2 == 0] ]
 
-    odd_blue = [y for x,y in enumerate(coordX) if x%2 != 0]
-    odd_blueY = [y for x,y in enumerate(coordY) if x%2 != 0]
+    coordsX = coordsX + [ [y for x,y in enumerate(coordX) if x%2 != 0] ]
+    coordsY = coordsY + [ [y for x,y in enumerate(coordY) if x%2 != 0] ]
 
     t = 0
-
-    loop_end = max(even_redY) + 1
-    while t < loop_end:
-        k = [b for a, b in zip(even_redY, even_red) if a == t]
-        #k = np.array(even_red)[indRedY].tolist() # select only
-        k.sort()
-        print(t)
-        print(loop_end)
+    #winner = 0
+    for winner in range(2):
         try:
-            g = min(k)
-            if (len(k)> 3) and (k == [g, g + 1, g +2, g + 3]):
-                print("The winner is " + colors[0])
-                breakOuterLoop = 1
-                break
-        
+            loop_end = max(coordsY[winner]) + 1
+            while t < loop_end:
+                k = [b for a, b in zip(coordsY[winner], coordsX[winner]) if a == t]
+                #k = np.array(even_red)[indRedY].tolist() # select only
+                k.sort()
+                print(t)
+                print(loop_end)
+                try:
+                    g = min(k)
+                    if (len(k)> 3) and (k == [g, g + 1, g +2, g + 3]):
+                        print("The winner is " + colors[winner])
+                        breakOuterLoop = 1
+                        break
+                
+                except:
+                    pass
+                
+            t +=1
         except:
             pass
-        
-        t +=1
         
