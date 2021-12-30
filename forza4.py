@@ -40,25 +40,24 @@ while breakOuterLoop == 0:
     
     coordsX = []
     coordsY = []
-    #[0] is even, which is red. [1] is odd, which is blue
-    
+    """
+    the following 4 lines separate the list of both the two coordinates
+    in even -> [0], which is red, and odd -> [1], which is blue
+    """
     coordsX = coordsX + [ [y for x,y in enumerate(coordX) if x%2 == 0] ]
     coordsY = coordsY + [ [y for x,y in enumerate(coordY) if x%2 == 0] ]
-
     coordsX = coordsX + [ [y for x,y in enumerate(coordX) if x%2 != 0] ]
     coordsY = coordsY + [ [y for x,y in enumerate(coordY) if x%2 != 0] ]
 
-    t = 0
-    #winner = 0
+    
     for winner in range(2):
         try:
+            t = 0 #
             loop_end = max(coordsY[winner]) + 1
             while t < loop_end:
                 k = [b for a, b in zip(coordsY[winner], coordsX[winner]) if a == t]
                 #k = np.array(even_red)[indRedY].tolist() # select only
                 k.sort()
-                print(t)
-                print(loop_end)
                 try:
                     g = min(k)
                     if (len(k)> 3) and (k == [g, g + 1, g +2, g + 3]):
@@ -69,7 +68,7 @@ while breakOuterLoop == 0:
                 except:
                     pass
                 
-            t +=1
+                t +=1 # something does not work!
         except:
             pass
         
