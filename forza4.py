@@ -40,7 +40,7 @@ coordY = [] #initializate y coordinate of each circle
 colors = ['red', 'blue'] # colors of circles
 y = [1 for k in range(6)] #initializate y position of each circles
 
-while r < 7:   
+while r < 17:   
     coord = plt.ginput(n = 1)[0][0] #it takes x axis (second [0]) on forza4
     coord = np.round(coord)# it rounds to the closest integer
     coordX = coordX + [int(coord)]#list of x coordinates
@@ -71,3 +71,13 @@ while r < 7:
     print(get_index_positions(odd_blueY, t) )
     print(get_index_positions(even_red, t))
     print(get_index_positions(even_redY, t))
+    
+    indRedY = get_index_positions(even_redY, t) #indexes red Y
+    if len(indRedY)> 3:
+        k = np.array(even_red)[indRedY].tolist()
+        k.sort()
+        g = min(k)
+        if k == [g, g + 1, g +2, g + 3]:
+            print("The winner is Red")
+            break
+        
