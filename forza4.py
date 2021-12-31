@@ -66,9 +66,9 @@ while breakOuterLoop == 0:
                 k2 = k2.tolist()
                 k2 = pd.Series(k2).value_counts().max() #righthand oblique win!
                 
-                #k3 = np.array(coordsX[winner]) - np.array(coordsY[winner][::-1]  )
-                #k3 = k3.tolist()
-                #k3 = pd.Series(k3).value_counts().max() #lefthand oblique win!
+                k3 = np.array(coordsX[winner]) - np.array(coordsY[winner][::-1]  )
+                k3 = k3.tolist()
+                k3 = pd.Series(k3).value_counts().max() #lefthand oblique win!
                 
                 try:
                     g0 = min(k0)
@@ -81,8 +81,8 @@ while breakOuterLoop == 0:
                 
                 if ( (len(k0)> 3) and (k0 == [g0, g0 + 1, g0 +2, g0 + 3]) ) or \
                 ( (len(k1)> 3 ) and ( k1 == [g1, g1 + 1, g1 +2, g1 + 3]) ) or \
-                ( k2 > 3 ):# or \
-                    #( k3 > 3 ):
+                ( k2 > 3 ) or \
+                ( k3 > 3 ):
                     print("The winner is " + colors[winner])
                     print(k0, k1, k2)
                     breakOuterLoop = 1
