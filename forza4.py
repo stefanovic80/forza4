@@ -57,6 +57,7 @@ while breakOuterLoop == 0:
                 #k = np.array(even_red)[indRedY].tolist() # select only
                 k0 = [b for a, b in zip(coordsY[winner], coordsX[winner]) if a == t]
                 k0.sort()#horizontal win!
+                #pd.Series could be a good alternative for this algorithm
                 
                 k1 = [b for a, b in zip(coordsX[winner], coordsY[winner]) if a == t]
                 k1.sort()#vertical win!
