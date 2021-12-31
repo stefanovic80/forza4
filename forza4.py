@@ -79,12 +79,12 @@ while breakOuterLoop == 0:
                 except:
                     pass
                 
-                if ( (len(k0)> 3) and (k0 == [g0, g0 + 1, g0 +2, g0 + 3]) ) or \
+                if ( ( (len(k0)> 3) and (k0 == [g0, g0 + 1, g0 +2, g0 + 3]) ) or \
                 ( (len(k1)> 3 ) and ( k1 == [g1, g1 + 1, g1 +2, g1 + 3]) ) or \
                 ( k2 > 3 ) or \
-                ( k3 > 3 ):
+                ( k3 > 3 ) ):
                     print("The winner is " + colors[winner])
-                    print(k0, k1, k2)
+                    print(k0, k1, k2, k3)
                     breakOuterLoop = 1
                     break
                 
